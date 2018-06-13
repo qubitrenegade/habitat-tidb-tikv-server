@@ -32,9 +32,9 @@ pkg_bin_dirs=(bin)
 # Supervisor to load the service. The loaded service will wait to run until it's bind becomes
 # available. If the bind does not contain the expected keys, the service will not start
 # successfully.
-# pkg_binds=(
-#   [pd]="client-port"
-# )
+pkg_binds=(
+  [pd]="client-port"
+)
 
 # Optional.
 # The user to run the service as. The default is hab.
@@ -68,14 +68,8 @@ do_build() {
   done
 }
 
-do_check() {
-  attach
-}
-
-
 do_install() {
   # iterate through all of the files in ${HAB_CACHE_SRC_PATH}/$pkg_dirname
-  attach
   for i in ./${pkg_name}*; do
     install_path=${pkg_prefix}/bin/${i}
     echo "installing ${i} to ${install_path}"
@@ -84,5 +78,6 @@ do_install() {
 }
 
 do_strip() {
+  # this kersplodes... skipping it 
   return 0
 }
