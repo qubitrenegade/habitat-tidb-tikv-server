@@ -2,8 +2,12 @@
 
 ## Description
 
-Provide a brief description of the `tikv` plan / purpose.
+https://github.com/pingcap/tikv but in habitat
 
 ## Usage
 
-Describe the general usage for the `tikv` plan
+Needs a `--topology leader` and a `--bind pd:pd.default` or similar.
+
+Config not written yet.
+
+
