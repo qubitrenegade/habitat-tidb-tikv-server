@@ -1,0 +1,3 @@
+#!{pkgPathFor "core/bash"}}/init
+
+ulimit -n 82920

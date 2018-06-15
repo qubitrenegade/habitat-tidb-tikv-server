@@ -1,3 +1,3 @@
-#!{{pkgPathFor "core/bash}}/bin/bash
+#!{{pkgPathFor "core/bash"}}/bin/bash -xe
 
-echo "this would normally start the tikv server service.  but we're tired."
+exec tikv-server --data-dir {{pkg.svc_data_path}} --config {{pkg.svc_config_path}}/server.toml

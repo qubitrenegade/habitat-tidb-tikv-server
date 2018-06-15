@@ -1,0 +1,8 @@
+{{toToml cfg}}
+
+[pd]
+endpoints = [
+  {{ #eachAlive bind.pd.members as |member| }}
+    "{{member.sys.ip}}:{{member.cfg.client-port~}}"{{#unless @last}},{{/unless~}}
+  {{/eachAlive}}
+]
