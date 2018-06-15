@@ -47,32 +47,32 @@ pkg_upstream_url="https://github.com/pingcap/tikv"
 
 do_clean() {
   # remove any old binaries
-  rm -rf ${HAB_CACHE_SRC_PATH}/tidb-latest-linux-amd64/
+  debug $(rm -rf ${HAB_CACHE_SRC_PATH}/tidb-latest-linux-amd64/)
   do_default_clean
 }
 
 do_prepare() {
   # the binaries are distributed together.  We'll separate them out now
-  cp -v ${HAB_CACHE_SRC_PATH}/tidb-latest-linux-amd64/bin/${pkg_name}* \
-    ${HAB_CACHE_SRC_PATH}/$pkg_dirname
+  debug $(cp -v ${HAB_CACHE_SRC_PATH}/tidb-latest-linux-amd64/bin/${pkg_name}* \
+    ${HAB_CACHE_SRC_PATH}/$pkg_dirname)
 }
 
 do_build() {
   # Update our interpreter and add link to gcc shared object.
   # AKA patchelf black magic
   for i in ./${pkg_name}*; do
-    echo "patching: patchelf --interpreter $(pkg_path_for glibc)/lib64/ld-linux-x86-64.so.2 ${i}"
+    debug "patching: patchelf --interpreter $(pkg_path_for glibc)/lib64/ld-linux-x86-64.so.2 ${i}"
     patchelf --interpreter "$(pkg_path_for glibc)/lib64/ld-linux-x86-64.so.2" ${i}
-    echo "adding libgcc_s.so.1: patchelf --add-needed $(pkg_path_for gcc-libs)/lib/libgcc_s.so.1 ${i}"
+    debug "adding libgcc_s.so.1: patchelf --add-needed $(pkg_path_for gcc-libs)/lib/libgcc_s.so.1 ${i}"
     patchelf --add-needed "$(pkg_path_for gcc-libs)/lib/libgcc_s.so.1" ${i}
   done
 }
 
 do_install() {
   # iterate through all of the files in ${HAB_CACHE_SRC_PATH}/$pkg_dirname
-  for i in ./${pkg_name}*; do
+  for i in ${pkg_name}*; do
     install_path=${pkg_prefix}/bin/${i}
-    echo "installing ${i} to ${install_path}"
+    build_line "installing ${i} to ${install_path}"
     install -D ${i} ${install_path}
   done
 }
