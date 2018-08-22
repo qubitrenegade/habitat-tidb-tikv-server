@@ -1,10 +1,10 @@
 pkg_name=tikv
 pkg_origin=qbr
-pkg_version=2.0.6
+pkg_version=2.0.3
 pkg_maintainer="The Habitat Maintainers <humans@habitat.sh>"
 pkg_license=("MPL-2.0")
 pkg_source=http://download.pingcap.org/tidb-v${pkg_version}-linux-amd64-unportable.tar.gz
-pkg_shasum=68fb6c3d112f497c5c0c90c94d68cf85f26312a9a1334598659e35fd7dcc94b1
+pkg_shasum=be725a370345504ed9dc495ec3bec1876b099eedf29486afe2e3da61b2bea038
 pkg_deps=(core/bash core/glibc core/gcc-libs)
 pkg_build_deps=(core/patchelf)
 pkg_bin_dirs=(bin)
