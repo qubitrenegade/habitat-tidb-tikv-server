@@ -54,7 +54,7 @@ do_clean() {
 
 do_prepare() {
   # the binaries are distributed together.  We'll separate them out now
-  build_line $(cp -v ${HAB_CACHE_SRC_PATH}/tidb-v${pkg_version}-linux-amd64-unportable/bin/${pkg_name}* \
+  build_line $(cp -v ${HAB_CACHE_SRC_PATH}/tidb-v${pkg_version}-linux-amd64/bin/${pkg_name}* \
     ${HAB_CACHE_SRC_PATH}/$pkg_dirname)
 }
 
