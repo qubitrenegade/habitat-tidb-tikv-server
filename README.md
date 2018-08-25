@@ -8,9 +8,18 @@ https://github.com/pingcap/tikv but in habitat
 
 Needs a `--topology leader` and a `--bind pd:pd.default` or similar.
 
-# This seems to work to start a single server.  
+# Start in container:
 
-docker run --ulimit nofile=82920:82920 --memory-swappiness 0 \
-  --sysctl net.ipv4.tcp_syncookies=0 --sysctl net.core.somaxconn=32768 \
-  qubitrenegade/tikv --peer 172.17.0.3 --peer 172.17.0.5 --bind pd:pd.default
+[Docker Hub](https://hub.docker.com/r/qbrd/tikv/)
 
+Adjust peers as necessary.
+
+The `--topology leader` appers to be optional?
+
+
+```
+docker run --rm --ulimit nofile=82920:82920 --memory-swappiness 0 \
+  --sysctl ipv4.tcp_syncookies=0 --sysctl net.core.somaxconn=32768 \
+  qbrd/tikv --peer 172.17.0.3 --peer 172.17.0.5 --bind pd:pd.default \
+  --topology leader
+```

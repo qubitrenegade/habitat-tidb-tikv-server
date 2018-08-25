@@ -40,15 +40,15 @@
 # max-tasks-per-worker-low = 2000
 # stack-size = "10MB"
 
-[server]
-# set listening address.
-# addr = "127.0.0.1:20160"
+[server-cfg]
+# set listening port of service
+port = 20160
 # set advertise listening address for client communication, if not set, use addr instead.
-# advertise-addr = ""
+advertise-addr = ""
 # notify capacity, 40960 is suitable for about 7000 regions.
-# notify-capacity = 40960
+notify-capacity = 40960
 # maximum number of messages can be processed in one tick.
-# messages-per-tick = 4096
+messages-per-tick = 4096
 
 # compression type for grpc channel, available values are none, deflate and gzip.
 # grpc-compression-type = "none"

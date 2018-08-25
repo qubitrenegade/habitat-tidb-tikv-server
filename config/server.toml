@@ -1,5 +1,12 @@
 {{toToml cfg}}
 
+[server]
+# set listening address.
+addr = "{{sys.ip}}:{{cfg.server-cfg.port}}"
+advertise-addr = "{{cfg.server-cfg.advertise-addr}}"
+notify-capacity = {{cfg.server-cfg.notify-capacity}}
+messages-per-tick = {{cfg.server-cfg.messages-per-tick}}
+
 [pd]
 endpoints = [
   {{ #eachAlive bind.pd.members as |member| }}
